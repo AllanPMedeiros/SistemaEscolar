@@ -1,0 +1,39 @@
+services:
+  db:
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    ports:
+      - "3000:5432"
+
+  api:
+    build:
+      context: .
+      dockerfile: dockerfile.app
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: development
+      FLASK_APP: app:app
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: escola
+      DB_USER: user
+      DB_PASSWORD: password
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:
