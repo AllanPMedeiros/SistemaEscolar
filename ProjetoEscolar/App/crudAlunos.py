@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.Util.bd import create_connection
+from App.Utils.bd import create_connection
 
 app = Blueprint('alunos', __name__)
 
