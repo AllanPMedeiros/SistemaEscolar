@@ -1,8 +1,8 @@
-FROM python:3.9
+FROM python:3.9-slim
 
-WORKDIR /app
+WORKDIR /App
 
-COPY app/requirements.txt ./requirements.txt
+COPY App/requirements.txt ./requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
 

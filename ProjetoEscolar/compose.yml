@@ -1,16 +1,19 @@
+version: '3.8'
 services:
   db:
     build:
-      context: .
+      context: ./BD
       dockerfile: dockerfile
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - BD_data:/var/lib/postgresql/data
     networks:
-      - app-network
+      - monitoring_network
     ports:
-      - "3000:5432"
+      - "3001:5432"
 
   api:
+    image: projetoescolar_api:latest
+    container_name: api-1
     build:
       context: .
       dockerfile: dockerfile.app
@@ -24,8 +27,8 @@ services:
       DB_HOST: db
       DB_PORT: 5432
       DB_NAME: escola
-      DB_USER: user
-      DB_PASSWORD: password
+      DB_USER: admin
+      DB_PASSWORD: admin123
     depends_on:
       - db
     networks:

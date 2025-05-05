@@ -1,10 +1,10 @@
 FROM postgres:latest
 
 ENV POSTGRES_DB=escola
-ENV POSTGRES_USER=user
-ENV POSTGRES_PASSWORD=password
+ENV POSTGRES_USER=admin
+ENV POSTGRES_PASSWORD=admin123
 
-COPY init.sql /docker-entrypoint-initdb.d/
+COPY BD/init.sql /docker-entrypoint-initdb.d/
 
 EXPOSE 5432
 
